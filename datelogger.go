@@ -23,6 +23,7 @@ func NewDateLog(pathName string) *DateLogger {
 
 func (d *DateLogger) checkLogFile() error {
 	strPath := filepath.Join(d.Path, time.Now().Format("2006-01-02")+".txt")
+	//因为上面获取的是日期，每一天一个文件，会保存上次的目录地址，这里就判断是否需要创建新的文件
 	if strPath != d.logFileName {
 		if d.logFile != nil {
 			if err := d.logFile.Close(); err != nil {
