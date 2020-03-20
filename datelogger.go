@@ -9,6 +9,7 @@ import (
 	"github.com/Sirupsen/logrus"
 )
 
+//DateLogger log对象
 type DateLogger struct {
 	Path        string //存放的目录名
 	Level       logrus.Level
@@ -17,6 +18,7 @@ type DateLogger struct {
 	logFileName string //当前的日志文件名
 }
 
+//NewDateLog 反馈一个log对象
 func NewDateLog(pathName string) *DateLogger {
 	return &DateLogger{Path: pathName, Level: logrus.DebugLevel}
 }
