@@ -40,15 +40,6 @@ func (d *DateLogger) checkLogFile() error {
 				Level: d.Level,
 			}
 		}
-		if d.log == nil {
-			d.log = &logrus.Logger{
-				Formatter: &logrus.TextFormatter{
-					TimestampFormat: "20060102T150405",
-				},
-				Hooks: make(logrus.LevelHooks),
-				Level: d.Level,
-			}
-		}
 		d.logFileName = strPath
 		//确保创建目录
 		if err := os.MkdirAll(filepath.Dir(d.logFileName), os.ModePerm); err != nil {
