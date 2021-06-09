@@ -1,0 +1,73 @@
+syntax="proto3";
+
+package wone_logger.server.v1;
+
+option go_package=".;api";
+
+message RequestLogMessages{
+    string sys = 1;
+    LogMessage msg = 2;
+    int64 level = 3;
+    string version = 4;
+    string	log_time = 5;
+}
+message RequestLogIdenticalMessageList{
+    string sys = 1;
+    repeated LogMessage msg = 2;
+    int64 level = 3;
+    string version = 4;
+    string	log_time = 5;
+}
+
+message RequestLogDifferentMessageList{
+    repeated RequestLogMessages  msg = 1;
+}
+
+message LogMessage{
+    string topic = 1;
+    string content = 2;
+}
+
+message RespondLogRes{
+    int32 code = 1;
+    string msg = 2;
+}
+
+message RequestLogFindParam{
+    string  log_sys =1;   
+    string	log_start_time = 2;
+    string	log_end_time = 3;
+    string	log_level = 4;      //逗号隔开
+    string	topic = 5;        
+    string	content = 6;     
+    int64	page = 7;        
+    int64	page_size = 8;        
+    ArgOrder order = 9;        
+}
+
+message ArgOrder{
+    string order_field = 1;
+    int64 order_val = 2;
+}
+
+message RespondLogFindList{
+    string msg = 1;
+}
+
+message RespondLogFind{
+    string version = 1;
+    string log_sys = 2;
+    string log_time = 3;
+    int64 log_level = 4;
+    string content = 5;
+    string host = 6;
+    string topic = 7;
+}
+
+
+service LogServer{
+    rpc SendOneLog(RequestLogMessages)returns (RespondLogRes);
+    rpc SendManyIdenticalLog(RequestLogIdenticalMessageList)returns (RespondLogRes);
+    rpc SendManyDifferentLog(RequestLogDifferentMessageList)returns (RespondLogRes);
+    rpc LogFind(RequestLogFindParam)returns (RespondLogFindList);
+}

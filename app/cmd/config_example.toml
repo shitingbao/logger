@@ -1,0 +1,48 @@
+version = "0.0.1"
+env = "dev"
+
+#mysql数据库配置
+#is_log_open为true表示对该库进行写入
+[mysql_db]
+    host = "sh-cdb-mr97xubq.sql.tencentcdb.com"
+    port = "61637"
+    user = "test"
+    password = "yZx0nqxbwQqv"
+    database = "redkol_test"
+    is_log_open = false
+
+[mongo]
+    driver = "mongodb://127.0.0.1:27017"
+    database = "test"
+    is_log_open = true
+    
+#grpc监听端口
+[grpc]
+    port = ":5000"
+
+#http服务配置
+[http_svc]
+    host = "127.0.0.1"
+    port = "8080"
+
+#log最低等级日志记录
+#根据logurs标准，共七个等级，最高为o（panic），最低为6（tracl），默认使用5
+#PanicLevel Level = iota
+#FatalLevel
+#ErrorLevel
+#WarnLevel
+#InfoLevel
+#DebugLevel
+#TraceLevel
+[log]
+    level = 5
+
+# nsq本地单机，消费者和生产公用一个配置
+# nsqlookupd
+# nsqd --lookupd-tcp-address=127.0.0.1:4160
+# nsqadmin --lookupd-http-address=127.0.0.1:4161
+
+[nsq]
+    address = "127.0.0.1:4150"
+    topic = "logger" 
+    channel = "log"
