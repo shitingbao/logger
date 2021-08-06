@@ -9,6 +9,7 @@ WORKDIR /logger
 COPY app/ app/
 COPY lib/ lib/
 COPY go.mod go.mod
+COPY go.sum go.sum
 
 WORKDIR /logger/app/cmd
 
