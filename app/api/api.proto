@@ -1,6 +1,6 @@
 syntax="proto3";
 
-package wone_logger.server.v1;
+package logger;
 
 option go_package=".;api";
 

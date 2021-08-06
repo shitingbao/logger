@@ -12,7 +12,7 @@ env = "dev"
     is_log_open = false
 
 [mongo]
-    driver = "mongodb://124.70.156.31:27017"
+    driver = "mongodb://root:4116bbDD@124.70.156.31:27017"
     database = "test"
     is_log_open = true
     
